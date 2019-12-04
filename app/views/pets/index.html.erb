@@ -1,3 +1,4 @@
+#refactor
 <% if @shelter %>
   <h1>Available for Adoption at <%= link_to "#{@shelter.name}", "/shelters/#{@shelter.id}" %></h1>
   <h2><%= link_to 'New Pet', "/shelters/#{@shelter.id}/pets/new" %></h2>

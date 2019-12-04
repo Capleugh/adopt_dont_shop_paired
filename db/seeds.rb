@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Shelter.destroy_all
 Pet.destroy_all
+Review.destroy_all
 
 shelter_1 = Shelter.create(name: "Rescuers Up Over",
                address: "246 Glenwood Dr",
@@ -39,3 +40,9 @@ shelter_1.pets.create(image: 'https://vetstreet.brightspotcdn.com/dims4/default/
                       approximate_age: 12,
                       sex: 'female',
                       status: 'adoptable')
+
+review_1 = shelter_1.reviews.create!(
+                title: "Love them doggies",
+                rating: 5,
+                content: "some content",
+                opt_pic: "https://i.imgur.com/B0D4iRk.jpg")
