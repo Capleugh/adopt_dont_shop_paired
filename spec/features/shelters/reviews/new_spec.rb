@@ -32,5 +32,17 @@ RSpec.describe "As a visitior" do
       expect(page).to have_content('some content')
       expect(page).to have_css("img[src *= 'https://i.imgur.com/B0D4iRk.jpg']")
     end
+
+    it "when I fail to enter title, rating, or content and submits a new review:
+      1. Flash message indicating they need to fill these fields
+      2. returned to new form to complete correctly" do
+        
+      visit "/shelters/#{@shelter_1.id}/reviews/new"
+      
+      click_on 'Submit'
+
+      expect(page).to have_content('Review not created - Please complete required fields')
+      expect(page).to have_button("Submit")
+    end
   end
 end
