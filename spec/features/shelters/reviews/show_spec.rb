@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe "as a vistor" do 
-  describe "when I visit a shelters show page" do 
-    before(:each) do 
+RSpec.describe "as a vistor" do
+  describe "when I visit a shelters show page" do
+    before(:each) do
       @shelter_1 = Shelter.create!(
                       name: "Rescuers Up Over",
                       address: "246 Glenwood Dr",
@@ -14,7 +14,7 @@ RSpec.describe "as a vistor" do
                       rating: 5,
                       content: "some content",
                       opt_pic: "https://i.imgur.com/B0D4iRk.jpg")
-    end 
+    end
 
     it "should show reviews for that shelter each should have:
     1. title
@@ -31,5 +31,4 @@ RSpec.describe "as a vistor" do
       end
     end
   end
-end 
-
+end
