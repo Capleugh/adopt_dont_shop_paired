@@ -20,7 +20,7 @@ RSpec.describe "As a visitior" do
 
 
       fill_in 'title', with: 'Love them doggies'
-      fill_in 'rating', with: 5
+      select "5", from: :rating
       fill_in 'content', with: 'some content'
       fill_in 'opt_pic', with: 'https://i.imgur.com/B0D4iRk.jpg'
       click_on 'Submit'
