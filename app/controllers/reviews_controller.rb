@@ -18,14 +18,19 @@ class ReviewsController < ApplicationController
   def edit
     @shelter = params[:shelter_id]
     @review = Review.find(params[:review_id])
-    # require "pry"; binding.pry
   end
 
   def update
-    review = Review.find(params[:review_id])
-    review.update!(review_params)
-
-    redirect_to "/shelters/#{params[:shelter_id]}"
+    @review = Review.find(params[:review_id])
+    @review.update(review_params)
+    
+    if @review.save 
+      redirect_to "/shelters/#{params[:shelter_id]}"
+    else
+      flash[:notice] = "Please enter a Title, Rating, and Content"
+      @shelter = params[:shelter_id]
+      render :edit
+    end
   end
 
   private
