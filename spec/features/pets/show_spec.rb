@@ -28,7 +28,7 @@ RSpec.describe "As a visitor" do
       @pet_3 = @shelter_1.pets.create!(image: 'https://i.pinimg.com/originals/03/fe/7d/03fe7d86bcba1c66fa369c3188780e04.jpg',
                                       name: 'Bartok',
                                       description: "This bat-eared, yoda cat definitely won't destroy everything in your home.",
-                                      approximate_age: 1,
+                                      approximate_age: 2,
                                       sex: 'male',
                                       status: 'pending adoption')
 
