@@ -22,10 +22,11 @@ class ReviewsController < ApplicationController
 
   def update
     @review = Review.find(params[:review_id])
+    @shelter_id = @review.shelter_id
     @review.update(review_params)
-
+# require "pry"; binding.pry
     if @review.save
-      redirect_to "/shelters/#{params[:shelter_id]}"
+      redirect_to "/shelters/#{@shelter_id}"
     else
       flash[:notice] = "Please enter a Title, Rating, and Content"
       @shelter = params[:shelter_id]
@@ -35,9 +36,10 @@ class ReviewsController < ApplicationController
 
   def destroy
     review = Review.find(params[:review_id])
+    shelter_id = review.shelter_id
     review.destroy
 
-    redirect_to "/shelters/#{params[:shelter_id]}"
+    redirect_to "/shelters/#{shelter_id}"
   end
 
   private

@@ -47,18 +47,18 @@ RSpec.describe "As a visitor" do
       expect(page).to have_css("img[src*='https://i.imgur.com/hl4dONR.jpg']")
     end
 
-    it "requires the user to input a rating, content, and description and provides a flash message if the user does not and directs them back to the edit page to reentry" do 
+    it "requires the user to input a rating, content, and description and provides a flash message if the user does not and directs them back to the edit page to reentry" do
 
       visit "/shelters/#{@shelter_1.id}/reviews/#{@review_1.id}/edit"
 
       fill_in 'title', with: ""
       fill_in 'content', with: ""
       select "5", from: :rating
-    
+
       click_on 'Update Review'
-      
+
       expect(page).to have_content("Please enter a Title, Rating, and Content")
       expect(page).to have_button("Update Review")
-    end 
+    end
   end
 end
