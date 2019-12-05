@@ -8,7 +8,7 @@ RSpec.describe "As a visitior" do
                       address: "246 Glenwood Dr",
                       city: "Boulder",
                       state: "CO",
-                      zip: "80304")
+                      zip: "80304")                         
     end
 
     it "when I click the link to creat a new review, I see a form which has title, rating, content, and optional image field that redirects to shelter's show page where review is displayed" do
@@ -18,7 +18,7 @@ RSpec.describe "As a visitior" do
       click_link 'Add Review'
       expect(current_path).to eq("/shelters/#{@shelter_1.id}/reviews/new")
 
-  
+
       fill_in 'title', with: 'Love them doggies'
       fill_in 'rating', with: 5
       fill_in 'content', with: 'some content'
@@ -36,9 +36,9 @@ RSpec.describe "As a visitior" do
     it "when I fail to enter title, rating, or content and submits a new review:
       1. Flash message indicating they need to fill these fields
       2. returned to new form to complete correctly" do
-        
+
       visit "/shelters/#{@shelter_1.id}/reviews/new"
-      
+
       click_on 'Submit'
 
       expect(page).to have_content('Review not created - Please complete required fields')
