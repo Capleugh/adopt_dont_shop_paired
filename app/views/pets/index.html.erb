@@ -6,7 +6,8 @@
         <p>Age: <%= pet.approximate_age %></p>
         <p>Sex: <%= pet.sex %></p>
         <img src= <%= pet.image %>><br/>
-        <p><%= link_to 'Update', "/shelters/#{pet.shelter.id}/pets/#{pet.id}/edit" %> <%= button_to 'Delete', "/pets/#{pet.id}", method: :delete %></p>
+        <p><%= link_to 'Update', "/shelters/#{pet.shelter.id}/pets/#{pet.id}/edit" %>
+           <%= button_to 'Delete', "/pets/#{pet.id}", method: :delete %></p>
     <% end %>
 <% else %>
   <h1>All Pets</h1>
@@ -16,6 +17,7 @@
         <p>Sex: <%= pet.sex %></p>
         <p>Available at: <%= link_to "#{pet.shelter.name}", "shelters/#{pet.shelter.id}" %></p>
         <img src= <%= pet.image %>><br/>
-        <p><%= link_to 'Update', "/pets/#{pet.id}/edit" %> <%= button_to 'Delete', "/pets/#{pet.id}", method: :delete %></p>
+        <p><%= link_to 'Update', "/pets/#{pet.id}/edit" %>
+           <%= button_to 'Delete', "/pets/#{pet.id}", method: :delete %></p>
   <% end %>
 <% end %>
