@@ -28,17 +28,18 @@ RSpec.describe "As a visitor" do
           expect(page).to have_button('Delete Review')
 
           click_button 'Delete Review'
-
-          expect(current_path).to eq("/shelter_1.id/#{@shelter_1.id}")
-          expect(page).to_not have_content(@review_1.title)
-          expect(page).to_not have_content(@review_1.rating)
-          expect(page).to_not have_content(@review_1.content)
-          expect(page).to_not have_css("img[src*='#{@review_1.opt_pic}']")
-
-          expect(page).to have_content(@review_2.title)
-          expect(page).to have_content(@review_2.rating)
-          expect(page).to have_content(@review_2.content)
+          # save_and_open_page
         end
+
+        expect(current_path).to eq("/shelters/#{@shelter_1.id}")
+        expect(page).to_not have_content(@review_1.title)
+        expect(page).to_not have_content(@review_1.rating)
+        expect(page).to_not have_content(@review_1.content)
+        expect(page).to_not have_css("img[src*='#{@review_1.opt_pic}']")
+
+        expect(page).to have_content(@review_2.title)
+        expect(page).to have_content(@review_2.rating)
+        expect(page).to have_content(@review_2.content)
       end
     end
   end

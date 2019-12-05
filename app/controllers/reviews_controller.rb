@@ -23,8 +23,8 @@ class ReviewsController < ApplicationController
   def update
     @review = Review.find(params[:review_id])
     @review.update(review_params)
-    
-    if @review.save 
+
+    if @review.save
       redirect_to "/shelters/#{params[:shelter_id]}"
     else
       flash[:notice] = "Please enter a Title, Rating, and Content"
@@ -34,6 +34,10 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
+    review = Review.find(params[:review_id])
+    review.destroy
+
+    redirect_to "/shelters/#{params[:shelter_id]}"
   end
 
   private
