@@ -13,17 +13,17 @@ Rails.application.routes.draw do
   get '/pets/:id', to: 'pets#show'
   get '/pets/:id/edit', to: 'pets#edit'
   patch '/pets/:id', to: 'pets#update'
-  # why do we not need a patch 'shelters/:shelter_id/pets/:id' to update pets from the shelter pets index page?
   delete '/pets/:id', to: 'pets#destroy'
   get '/shelters/:shelter_id/pets', to: 'pets#index'
+  # get '/shelters/:shelter_id/pets', to: 'shelter_pets#index'
+  # create a new controller
   get '/shelters/:shelter_id/pets/new', to: 'pets#new'
-  # get '/shelters/:shelter_id/pets/:id', to: 'pets#show'
   post '/shelters/:shelter_id/pets', to: 'pets#create'
   get '/shelters/:shelter_id/pets/:id/edit', to: 'pets#edit'
 
   get '/shelters/:shelter_id/reviews/new', to: 'reviews#new'
   post '/shelters/:shelter_id', to: 'reviews#create'
   get '/shelters/:shelter_id/reviews/:review_id/edit', to: 'reviews#edit'
-  patch '/shelters/:shelter_id/reviews/:review_id', to: 'reviews#update'
-  delete '/shelters/:shelter_id/reviews/:review_id', to: 'reviews#destroy'
+  patch '/reviews/:review_id', to: 'reviews#update'
+  delete '/reviews/:review_id', to: 'reviews#destroy'
 end
