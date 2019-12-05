@@ -17,5 +17,6 @@
     <p> Content: <%= review.content %> </p>
     <p> Optional Image: <%= image_tag(review.opt_pic) %></p>
     <%= link_to 'Edit Review', "/shelters/#{@shelter.id}/reviews/#{review.id}/edit" %>
+    <%= button_to 'Delete Review', "/shelters/#{@shelter.id}/reviews/#{review.id}", method: :delete %>
   </section>
 <% end %>
