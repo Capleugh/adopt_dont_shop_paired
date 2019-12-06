@@ -10,6 +10,7 @@ class PetsController < ApplicationController
 
   def show
     @pet = Pet.find(params[:id])
+    @cart = Cart.new(session[:cart])
   end
 
   def new

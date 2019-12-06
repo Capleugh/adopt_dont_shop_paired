@@ -28,25 +28,23 @@ RSpec.describe "as a visitor" do
       visit "/pets"
 
       within("#fav") do
-        expect(page).to have_content("Favorites: 1")
+        expect(page).to have_content("Favorites: 0")
       end
     end
 
-    it "When I click the button to favorite a pet I am taken to that pet's show page and I see a message that confirms pet was added to favorites" do
+    it "When I click the button to favorite a pet I am taken to that pet's show page and I see a message that confirms pet was added to favorites and I see the favorite indicator increment by 1" do
 
       visit "/pets/#{@pet_1.id}"
+
+      expect(page).to have_content("Favorites: 0")
 
       within("#pet-#{@pet_1.id}") do
         click_button 'Fave it'
       end
 
       expect(current_path).to eq("/pets/#{@pet_1.id}")
+      expect(page).to have_content("Favorites: 1")
       expect(page).to have_content("#{@pet_1.name} has been faved to your favorites list!")
-      expect(page).to have_content("Favorites: 2")
-    end
-
-    xit "I see the favorite indicator increment by 1" do
-
     end
   end
 end
