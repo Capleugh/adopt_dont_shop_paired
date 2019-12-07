@@ -1,0 +1,9 @@
+<h1> View Faved Pets </h1>
+
+  <% @view_faved_pets.each do |pet| %>
+    <section id = "fav-<%= pet.id %>">
+      <%= link_to "#{pet.name}", "/pets/#{pet.id}" %>
+      <%= image_tag(pet.image) %>
+    </section>
+  <% end %>
+
