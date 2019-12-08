@@ -5,15 +5,19 @@ class Cart
     @contents = initial_contents || Hash.new(0)
   end
 
-  # def add_pet(id)
-  #
-  # end
+  def all_favorites
+    # @contents.map do |pet_id, pet|
+    #   pet
+    # end
+    @contents.values
+  end
 
   def total_count
-    @contents.values.sum
+    # require "pry"; binding.pry
+    @contents.values.count
   end
 
-  def count_of(id)
-    @contents[id.to_s].to_i
-  end
+  # def count_of(id)
+  #   @contents[id.to_s].to_i
+  # end
 end
