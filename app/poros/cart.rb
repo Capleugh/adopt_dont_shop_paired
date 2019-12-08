@@ -6,18 +6,15 @@ class Cart
   end
 
   def all_favorites
-    # @contents.map do |pet_id, pet|
-    #   pet
-    # end
     @contents.values
   end
 
   def total_count
-    # require "pry"; binding.pry
     @contents.values.count
   end
 
-  # def count_of(id)
-  #   @contents[id.to_s].to_i
-  # end
+  def remove_favorite(id)
+    @contents.delete(id.to_s)
+  end
+
 end

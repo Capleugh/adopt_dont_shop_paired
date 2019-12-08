@@ -59,5 +59,24 @@ RSpec.describe "As a visitor" do
       click_link 'Shelter Index'
       expect(current_path).to eq("/shelters")
     end
+
+    it "doesn't show a link to favorite an already favorited pet, but rather a link to remove.  Once clicked pet is unfaved, I am redirected, and to the show page, I see a flash message saying was removed and the link now changes to allow me to favorite.  Fav's is decremented by one " do 
+
+      visit "/pets/#{@pet_1.id}"
+
+      within("#pet-#{@pet_1.id}") do
+        click_button 'Fave it'
+      end
+
+      click_button "Unfave it"
+
+      expect(current_path).to eq("/pets/#{@pet_1.id}")
+      expect(page).to have_content("#{@pet_1.name} has been unfaved from your favorites list!")
+
+      expect(page).to have_content("Favorites: 0")
+      expect(page).to have_button("Fave it")
+
+    end 
+
   end
 end

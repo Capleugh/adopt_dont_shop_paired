@@ -37,14 +37,14 @@ RSpec.describe "as a visitor" do
         click_button 'Fave it'
       end
 
-      visit "/favorites"
+      visit "/cart"
       within "#fav-#{@pet_1.id}" do
         expect(page).to have_css("img[src*='#{@pet_1.image}']")
         click_link "#{@pet_1.name}"
         expect(current_path).to eq("/pets/#{@pet_1.id}")
       end
 
-      visit "/favorites"
+      visit "/cart"
       within "#fav-#{@pet_2.id}" do
         expect(page).to have_css("img[src*='#{@pet_2.image}']")
         click_link "#{@pet_2.name}"

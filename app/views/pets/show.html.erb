@@ -1,5 +1,11 @@
 <section id="pet-<%= @pet.id%>">
-  <p><%= button_to 'Fave it', "/cart/pets/#{@pet.id}", method: :patch %></p>
+  
+  <% if cart.contents.keys.include?(@pet.id.to_s) %>
+    <p><%= button_to 'Unfave it', "/cart/#{@pet.id}", method: :delete %></p>
+  <% else %>
+    <p><%= button_to 'Fave it', "/cart/pets/#{@pet.id}", method: :patch %></p>
+  <% end %>
+
   <h3>Name: <%= @pet.name %></h3>
   <p>Description: <%= @pet.description %></p>
   <p>Age: <%= @pet.approximate_age %></p>
