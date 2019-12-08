@@ -8,7 +8,7 @@ RSpec.describe "As a visitor" do
 
       click_link 'Favorites'
 
-      expect(current_path).to eq('/favorites')
+      expect(current_path).to eq('/cart')
     end
   end
 
@@ -19,7 +19,7 @@ RSpec.describe "As a visitor" do
 
       click_link 'Favorites'
 
-      expect(current_path).to eq('/favorites')
+      expect(current_path).to eq('/cart')
     end
   end
 end
