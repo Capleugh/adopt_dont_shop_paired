@@ -1,8 +1,8 @@
 require "rails_helper"
 
-RSpec.describe "as a visitor" do 
-  describe "when I visit my favorites index page and have already previously favoritied some pets" do 
-    before(:each) do 
+RSpec.describe "as a visitor" do
+  describe "when I visit my favorites index page and have already previously favoritied some pets" do
+    before(:each) do
       @shelter_1 = Shelter.create!(name: "New Shelter",
                                  address: "908 Beltline Dr",
                                  city: "Richardson",
@@ -23,9 +23,9 @@ RSpec.describe "as a visitor" do
                                        status: 'pending adoption')
     end
 
-    it "shows me a list of all my favorite pets with 
+    it "shows me a list of all my favorite pets with
     -pets name
-    -pets image" do 
+    -pets image" do
 
       visit "/pets/#{@pet_1.id}"
       within("#pet-#{@pet_1.id}") do
@@ -38,20 +38,19 @@ RSpec.describe "as a visitor" do
       end
 
       visit "/favorites"
-      within "#fav-#{@pet_1.id}" do  
+      within "#fav-#{@pet_1.id}" do
         expect(page).to have_css("img[src*='#{@pet_1.image}']")
         click_link "#{@pet_1.name}"
         expect(current_path).to eq("/pets/#{@pet_1.id}")
       end
 
       visit "/favorites"
-      within "#fav-#{@pet_2.id}" do  
+      within "#fav-#{@pet_2.id}" do
         expect(page).to have_css("img[src*='#{@pet_2.image}']")
         click_link "#{@pet_2.name}"
         expect(current_path).to eq("/pets/#{@pet_2.id}")
       end
-
-    end 
+      
+    end
   end
 end
-  

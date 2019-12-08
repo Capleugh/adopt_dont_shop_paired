@@ -9,12 +9,12 @@ RSpec.describe Cart do
       expect(cart.total_count).to eq(1)
     end
 
-    describe "#count_of" do
-      it "returns the count of pets in favorites" do
-        cart = Cart.new({})
-
-        expect(cart.count_of(1)).to eq(0)
-      end
-    end
+    # describe "#count_of" do
+    #   it "returns the count of pets in favorites" do
+    #     cart = Cart.new({})
+    #
+    #     expect(cart.count_of(1)).to eq(0)
+    #   end
+    # end
   end
 end
