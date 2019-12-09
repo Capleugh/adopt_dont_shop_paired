@@ -23,11 +23,21 @@ RSpec.describe Cart do
   describe "#remove_favorite" do
     it "removes a favorite to its contents" do
       cart = Cart.new({'1' => 1,
-                       '2' => 1 })  
+                       '2' => 1 })
 
       cart.remove_favorite(1)
 
       expect(cart.contents).to eq({'2' => 1 })
+    end
+  end
+
+  describe "#empty?" do
+    it "checks if favorites empty" do
+      cart = Cart.new({})
+
+      cart.empty?
+
+      expect(cart.contents).to eq({})
     end
   end
 end

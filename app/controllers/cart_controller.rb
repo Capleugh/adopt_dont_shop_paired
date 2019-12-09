@@ -2,6 +2,7 @@ class CartController < ApplicationController
 
   def index
     @view_faved = cart.all_favorites
+    @no_faves = cart.empty?
   end
 
   def update
