@@ -1,6 +1,4 @@
 class CartController < ApplicationController
-  include ActionView::Helpers::TextHelper
-
   def update
     pet = Pet.find(params[:pet_id])
     pet_id_str = pet.id.to_s
@@ -15,20 +13,31 @@ class CartController < ApplicationController
 
   def index
     @view_faved = cart.all_favorites
+    @no_faves = cart.empty?
   end
 
   def destroy
     pet = Pet.find(params[:pet_id])
+    # MIKE why do we not have to call session[:cart] here?
     cart.remove_favorite(pet.id)
     flash[:notice] = "#{pet.name} has been unfaved from your favorites list!"
 
-    # ask mike/meg
+    # ask MIKE about why we dont need a pet "/pets/#{params[:pet_id]} redirect with the following method"
     redirect_back(fallback_location: "/cart")
     # needs refactor, this conditional is not explicit enough
-    # if request.referrer.include?("cart") #== "#{request.env["HTTP_REFERER"]}/cart"request.referrer == request.env["HTTP_REFERER"] 
+    # if request.referrer.include?("cart") #== "#{request.env["HTTP_REFERER"]}/cart"request.referrer == request.env["HTTP_REFERER"]
     #   redirect_to "/cart"
-    # else 
+    # else
     #   redirect_to "/pets/#{params[:pet_id]}"
     # end
+  end
+
+  def destroy_all
+    #ask MIKE whether this is an acceptable action
+    cart.remove_all
+    session[:cart] = cart.contents
+    # MIKE why does session[:cart] need to be updated for index to display correctly?
+
+    redirect_to "/cart"
   end
 end

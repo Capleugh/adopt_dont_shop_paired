@@ -17,4 +17,13 @@ class Cart
     @contents.delete(id.to_s)
   end
 
+  def empty?
+    # require "pry"; binding.pry
+    @contents.count == 0
+  end
+
+  def remove_all
+    # require "pry"; binding.pry
+    @contents = Hash.new({})
+  end
 end
