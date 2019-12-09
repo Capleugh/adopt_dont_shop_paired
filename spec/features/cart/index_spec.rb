@@ -27,7 +27,7 @@ RSpec.describe "as a visitor" do
     -pets name
     -pets image" do
 
-      visit "/pets/#{@pet_1.id}"
+      visit "/pets/#{@pet_1.id}" 
       within("#pet-#{@pet_1.id}") do
         click_button 'Fave it'
       end
@@ -50,7 +50,7 @@ RSpec.describe "as a visitor" do
         click_link "#{@pet_2.name}"
         expect(current_path).to eq("/pets/#{@pet_2.id}")
       end
-      
+
     end
   end
 end
