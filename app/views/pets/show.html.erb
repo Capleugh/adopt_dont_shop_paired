@@ -1,5 +1,5 @@
 <section id="pet-<%= @pet.id%>">
-  
+
   <% if cart.contents.keys.include?(@pet.id.to_s) %>
     <p><%= button_to 'Unfave it', "/cart/#{@pet.id}", method: :delete %></p>
   <% else %>

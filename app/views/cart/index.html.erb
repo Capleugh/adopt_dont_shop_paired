@@ -1,12 +1,16 @@
 <h1> View Faved Pets </h1>
 
-  <% @view_faved.each do |pet| %>
-    <section id = "fav-<%= pet["id"] %>">
-      <br>
-      <%= link_to "#{pet["name"]}", "/pets/#{pet["id"]}" %>
-      <br>
-      <%= image_tag(pet["image"]) %>
-      <br>
-      <%= button_to "Unfave it", "/cart/#{pet["id"]}", method: :delete %>
-    </section>
-  <% end %>
+<% if @view_faved.count == 0 %>
+<p>"You have no faved pets."</p>
+<% end %>
+
+<% @view_faved.each do |pet| %>
+  <section id = "fav-<%= pet["id"] %>">
+    <br>
+    <%= link_to "#{pet["name"]}", "/pets/#{pet["id"]}" %>
+    <br>
+    <%= image_tag(pet["image"]) %>
+    <br>
+    <%= button_to "Unfave it", "/cart/#{pet["id"]}", method: :delete %>
+  </section>
+<% end %>

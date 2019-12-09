@@ -50,18 +50,8 @@ RSpec.describe "as a visitor" do
         click_link "#{@pet_2.name}"
         expect(current_path).to eq("/pets/#{@pet_2.id}")
       end
-      
- # User Story 13, Remove a Favorite from Favorites Page
- #
- #As a visitor
- #When I have added pets to my favorites list
- #And I visit my favorites page ("/favorites")
- #Next to each pet, I see a button or link to remove that pet from my favorites
- #When I click on that button or link to remove a favorite
- #A delete request is sent to "/favorites/:pet_id"
- #And I'm redirected back to the favorites page where I no longer see that pet listed
- #And I also see that the favorites indicator has decremented by 1
     end
+
     it "has a link next to each pet to remove from faves index and when I click it it removes and decrements" do
 
       visit "/pets/#{@pet_1.id}"
@@ -90,6 +80,13 @@ RSpec.describe "as a visitor" do
       end
 
       expect(page).to have_content("Favorites: 0")
+    end
+
+    it "when I have not added any pets to my favorites list I see text indicating I have no favorited indicating that I have no favorited pets" do
+      visit "/cart"
+
+      expect(page).to have_content("Favorites: 0")
+      expect(page).to have_content("You have no faved pets.")
     end
   end
 end

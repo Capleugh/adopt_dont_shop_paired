@@ -1,5 +1,8 @@
 class CartController < ApplicationController
-  include ActionView::Helpers::TextHelper
+
+  def index
+    @view_faved = cart.all_favorites
+  end
 
   def update
     pet = Pet.find(params[:pet_id])
@@ -13,9 +16,6 @@ class CartController < ApplicationController
     redirect_to "/pets/#{params[:pet_id]}"
   end
 
-  def index
-    @view_faved = cart.all_favorites
-  end
 
   def destroy
     pet = Pet.find(params[:pet_id])
@@ -25,9 +25,9 @@ class CartController < ApplicationController
     # ask mike/meg
     redirect_back(fallback_location: "/cart")
     # needs refactor, this conditional is not explicit enough
-    # if request.referrer.include?("cart") #== "#{request.env["HTTP_REFERER"]}/cart"request.referrer == request.env["HTTP_REFERER"] 
+    # if request.referrer.include?("cart") #== "#{request.env["HTTP_REFERER"]}/cart"request.referrer == request.env["HTTP_REFERER"]
     #   redirect_to "/cart"
-    # else 
+    # else
     #   redirect_to "/pets/#{params[:pet_id]}"
     # end
   end
