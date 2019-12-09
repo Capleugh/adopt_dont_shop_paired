@@ -2,7 +2,11 @@
 
   <% @view_faved.each do |pet| %>
     <section id = "fav-<%= pet["id"] %>">
+      <br>
       <%= link_to "#{pet["name"]}", "/pets/#{pet["id"]}" %>
+      <br>
       <%= image_tag(pet["image"]) %>
+      <br>
+      <%= button_to "Unfave it", "/cart/#{pet["id"]}", method: :delete %>
     </section>
   <% end %>
