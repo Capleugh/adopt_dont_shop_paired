@@ -52,10 +52,21 @@ RSpec.describe "as a visitor" do
       fill_in "state", with: "co"  
       fill_in "zip", with: "80204"  
       fill_in "phone", with: "111-222-3333"  
-      fill_in "why_do_you_get_it", with: "b/c I am really lonely...please send pets"  
+      fill_in "description", with: "b/c I am really lonely...please send pets"  
 
       click_button "Submit application"
       expect(current_path).to eq("/adoption_apps")
+
+      #new_app = AdoptionApp.last
+
+      #expect(new_app).to have_content("bob")
+      #expect(new_app).to have_content("100 best lane")
+      #expect(new_app).to have_content("denver")
+      #expect(new_app).to have_content("co")
+      #expect(new_app).to have_content("80204")
+      #expect(new_app).to have_content("111-222-3333")
+      #expect(new_app).to have_content("b/c I am really lonely...please send pets")  
+
     end 
   end
 end

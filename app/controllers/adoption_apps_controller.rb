@@ -3,7 +3,8 @@ class AdoptionAppsController < ApplicationController
   def new 
   end 
 
-#  def create
-#  end 
+  def create
+    
+  end 
 
 end 
