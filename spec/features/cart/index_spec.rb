@@ -88,5 +88,27 @@ RSpec.describe "as a visitor" do
       expect(page).to have_content("Favorites: 0")
       expect(page).to have_content("You have no faved pets.")
     end
+
+    # ask about preferred test structure for poros
+    it "I see a link to remove all favorited pets and am redirected back to same page where I see no faved pets text and favorites indicator is 0" do
+      visit "/pets/#{@pet_1.id}"
+      within("#pet-#{@pet_1.id}") do
+        click_button 'Fave it'
+      end
+
+      visit "/pets/#{@pet_2.id}"
+      within("#pet-#{@pet_2.id}") do
+        click_button 'Fave it'
+      end
+
+      visit "/cart"
+
+      click_button "Remove all faves"
+
+      expect(current_path).to eq("/cart")
+
+      expect(page).to have_content("Favorites: 0")
+      expect(page).to have_content("You have no faved pets.")
+    end
   end
 end

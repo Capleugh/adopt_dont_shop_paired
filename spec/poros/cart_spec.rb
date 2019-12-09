@@ -40,4 +40,15 @@ RSpec.describe Cart do
       expect(cart.contents).to eq({})
     end
   end
+
+  describe "#remove_all" do
+    it "removes all favorites" do
+      cart = Cart.new({'1' => 1,
+                       '2' => 1 })
+
+      cart.remove_all
+
+      expect(cart.contents).to eq({})
+    end
+  end
 end

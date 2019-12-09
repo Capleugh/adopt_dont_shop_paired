@@ -30,6 +30,6 @@ Rails.application.routes.draw do
   get '/cart', to: 'cart#index'
   patch '/cart/pets/:pet_id', to: 'cart#update'
 
-  delete '/cart/:pet_id', to: 'cart#destroy' 
+  delete '/cart', to: 'cart#destroy_all'
+  delete '/cart/:pet_id', to: 'cart#destroy'
 end
-
