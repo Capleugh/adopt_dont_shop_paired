@@ -32,4 +32,9 @@ Rails.application.routes.draw do
 
   delete '/cart', to: 'cart#destroy_all'
   delete '/cart/:pet_id', to: 'cart#destroy'
+
+  get '/adoption_apps/new', to: 'adoption_apps#new'
+  post '/adoption_apps', to: 'adoption_apps#create'
+  
+
 end

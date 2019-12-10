@@ -4,8 +4,13 @@
 <p>"You have no faved pets."</p>
 <% end %>
 
+<br>
+<%= link_to "Apply", "/adoption_apps/new" %>
+
+<br>
 <%= button_to "Remove all faves", "/cart", method: :delete %>
 
+<br>
 <% @view_faved.each do |pet| %>
   <section id = "fav-<%= pet["id"] %>">
     <br>
