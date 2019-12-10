@@ -1,16 +1,10 @@
-class AdoptionAppsController < ApplicationController 
+class AdoptionAppsController < ApplicationController
 
-  def new 
+  def new
     @faved_pets = cart.contents
-  end 
+  end
 
   def create
-    if params[:applied_pets] == nil
-      flash[:notice] = "Please complete all required fields"
-      @faved_pets = cart.contents
-      render :new
-    end
-    pets = Pet.find(params[:applied_pets])
     pets = Pet.find(params[:applied_pets])
     app = AdoptionApp.new(app_params)
 
@@ -19,7 +13,7 @@ class AdoptionAppsController < ApplicationController
     end
 
     if app.save
-      flash[:notice] = "Your application is in" 
+      flash[:notice] = "Your application is in"
       pets.each do |pet|
         cart.remove_favorite(pet.id)
       end
@@ -29,11 +23,15 @@ class AdoptionAppsController < ApplicationController
       @faved_pets = cart.contents
       render :new
     end
-  end 
+  end
+
+  def show
+
+  end
 
   private
 
   def app_params
     params.permit(:name, :address, :city, :state, :zip, :phone, :description)
-  end  
-end 
+  end
+end
