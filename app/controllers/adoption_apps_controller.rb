@@ -1,16 +1,13 @@
 class AdoptionAppsController < ApplicationController 
 
+  def index 
+  end 
+  
   def new 
     @faved_pets = cart.contents
   end 
 
   def create
-    if params[:applied_pets] == nil
-      flash[:notice] = "Please complete all required fields"
-      @faved_pets = cart.contents
-      render :new
-    end
-    pets = Pet.find(params[:applied_pets])
     pets = Pet.find(params[:applied_pets])
     app = AdoptionApp.new(app_params)
 
