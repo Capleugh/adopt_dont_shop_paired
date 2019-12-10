@@ -26,7 +26,8 @@ class AdoptionAppsController < ApplicationController
   end
 
   def show
-
+    # require "pry"; binding.pry
+    @app = AdoptionApp.find(params[:app_id])
   end
 
   private

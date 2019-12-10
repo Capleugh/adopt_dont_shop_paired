@@ -42,15 +42,17 @@ RSpec.describe "As a visitor" do
 
       visit "/adoption_apps/#{@app_1.id}"
 
-      expect(page).to have_content(@app_1.name)
-      expect(page).to have_content(@app_1.address)
-      expect(page).to have_content(@app_1.city)
-      expect(page).to have_content(@app_1.state)
-      expect(page).to have_content(@app_1.zip)
-      expect(page).to have_content(@app_1.phone)
-      expect(page).to have_content(@app_1.description)
-      expect(page).to have_content(@pet_1.name)
-      expect(page).to have_content(@pet_2.name)
+      within "#app-#{@app_1.id}" do
+        expect(page).to have_content(@app_1.name)
+        expect(page).to have_content(@app_1.address)
+        expect(page).to have_content(@app_1.city)
+        expect(page).to have_content(@app_1.state)
+        expect(page).to have_content(@app_1.zip)
+        expect(page).to have_content(@app_1.phone)
+        expect(page).to have_content(@app_1.description)
+        expect(page).to have_content(@pet_1.name)
+        expect(page).to have_content(@pet_2.name)
+      end
     end
   end
 end

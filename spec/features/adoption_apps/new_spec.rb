@@ -94,8 +94,6 @@ RSpec.describe "as a visitor" do
       expect(page).not_to have_content(@pet_1.name)
       expect(page).not_to have_content(@pet_2.name)
       expect(page).to have_content(@pet_3.name)
-
-
     end
 
     it "User Story 17, Incomplete application for a Pet
@@ -158,7 +156,7 @@ RSpec.describe "as a visitor" do
 
       expect(page).to have_content("Please complete all required fields")
     end
-    
+
     xit "handles edge case of no pets applied for" do
 
       visit "/pets/#{@pet_3.id}"
