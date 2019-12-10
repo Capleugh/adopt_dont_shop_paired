@@ -7,13 +7,16 @@ class AdoptionAppsController < ApplicationController
   def create
     pets = Pet.find(params[:applied_pets])
     app = AdoptionApp.create!(app_params)
+    pet_str_flsh = String.new
 
     pets.each do |pet|
       app.pets << pet
+      cart.remove_favorite(pet.id)
     end
 
-    binding.pry
-    flash[:notice] = "your application for #{}"
+    flash[:notice] = "Your application is in" 
+    
+
     redirect_to "/cart"
   end 
 
