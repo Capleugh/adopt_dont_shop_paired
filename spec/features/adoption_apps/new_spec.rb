@@ -37,7 +37,7 @@ RSpec.describe "as a visitor" do
       @app_1.pets << @pet_1
       @app_1.pets << @pet_2
     end
-    it "1. shows me a link for a adopting my favorited pets
+    xit "1. shows me a link for a adopting my favorited pets
         2. When I click said link, I am taken a new application form (cart/new)
         3. A) shows me favorited pets B) allows me to apply for those pets
         4. I select my pets and apply by filling in =Name =Address = City =State =Zip =Phone Number =Flowers about why I am the best pet parent
@@ -97,7 +97,7 @@ RSpec.describe "as a visitor" do
       
     end 
 
-    it "User Story 17, Incomplete application for a Pet
+    xit "User Story 17, Incomplete application for a Pet
 
     As a visitor
     When I apply for a pet and fail to fill out any of the following:
@@ -153,7 +153,31 @@ RSpec.describe "as a visitor" do
         click_button "Submit application"
       end
 
-      expect(current_path).to eq("/adoption_apps/new")
+      expect(current_path).to eq("/adoption_apps")
+
+      expect(page).to have_content("Please complete all required fields")
+    end
+    it "handles edge case of no pets applied for" do 
+      
+      visit "/pets/#{@pet_3.id}"
+      within("#pet-#{@pet_3.id}") do
+        click_button 'Fave it'
+      end
+
+      visit '/cart'
+
+      click_link "Apply"
+
+      fill_in "name", with: "bob"  
+      fill_in "address", with: "100 best lane"  
+      fill_in "city", with: "denver"  
+      fill_in "state", with: "co"  
+      fill_in "zip", with: "80204"  
+      fill_in "phone", with: "111-222-3333"  
+      fill_in "description", with: "b/c I am really lonely...please send pets"  
+      click_button "Submit application"
+
+      expect(current_path).to eq("/adoption_apps")
 
       expect(page).to have_content("Please complete all required fields")
     end

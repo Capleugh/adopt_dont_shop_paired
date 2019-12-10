@@ -1,7 +1,7 @@
 <section id= "app">
   <%= form_tag '/adoption_apps' do %>
 
-    <% applied_pets ||= Array.new %>
+    <% applied_pets = Array.new %>
 
     <% @faved_pets.each do |id, pet|  %>
       </br>
