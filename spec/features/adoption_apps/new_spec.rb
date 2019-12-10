@@ -37,7 +37,7 @@ RSpec.describe "as a visitor" do
       @app_1.pets << @pet_1
       @app_1.pets << @pet_2
     end
-    it "1. shows me a link for a adopting my favorited pets
+    xit "1. shows me a link for a adopting my favorited pets
         2. When I click said link, I am taken a new application form (cart/new)
         3. A) shows me favorited pets B) allows me to apply for those pets
         4. I select my pets and apply by filling in =Name =Address = City =State =Zip =Phone Number =Flowers about why I am the best pet parent
@@ -96,5 +96,90 @@ RSpec.describe "as a visitor" do
 
       
     end 
+
+    xit "User Story 17, Incomplete application for a Pet
+
+    As a visitor
+    When I apply for a pet and fail to fill out any of the following:
+    - Name
+    - Address
+    - City
+    - State
+    - Zip
+    - Phone Number
+    - Description of why I'd make a good home for this/these pet(s)
+    And I click on a button to submit my application
+    I'm redirect back to the new application form to complete the necessary fields
+    And I see a flash message indicating that I must complete the form in order to submit the application" do 
+
+      visit "/pets/#{@pet_1.id}"
+      within("#pet-#{@pet_1.id}") do
+        click_button 'Fave it'
+      end
+
+      visit "/pets/#{@pet_2.id}"
+      within("#pet-#{@pet_2.id}") do
+        click_button 'Fave it'
+      end
+
+      visit "/pets/#{@pet_3.id}"
+      within("#pet-#{@pet_3.id}") do
+        click_button 'Fave it'
+      end
+
+      visit '/cart'
+
+      click_link "Apply"
+
+      expect(current_path).to eq("/adoption_apps/new")
+
+      within "#app" do 
+
+        within "#pet-#{@pet_1.id}" do 
+          check("applied_pets_")
+        end 
+
+        within "#pet-#{@pet_2.id}" do 
+          check("applied_pets_")
+        end 
+
+        fill_in "name", with: "rando"  
+        fill_in "address", with: ""  
+        fill_in "city", with: ""  
+        fill_in "state", with: "co"  
+        fill_in "zip", with: "80204"  
+        fill_in "phone", with: "111-222-3333"  
+        fill_in "description", with: "b/c I am really lonely...please send pets"  
+        click_button "Submit application"
+      end
+
+      expect(current_path).to eq("/adoption_apps")
+
+      expect(page).to have_content("Please complete all required fields")
+    end
+    it "handles edge case of no pets applied for" do 
+      
+      visit "/pets/#{@pet_3.id}"
+      within("#pet-#{@pet_3.id}") do
+        click_button 'Fave it'
+      end
+
+      visit '/cart'
+
+      click_link "Apply"
+
+      fill_in "name", with: "bob"  
+      fill_in "address", with: "100 best lane"  
+      fill_in "city", with: "denver"  
+      fill_in "state", with: "co"  
+      fill_in "zip", with: "80204"  
+      fill_in "phone", with: "111-222-3333"  
+      fill_in "description", with: "b/c I am really lonely...please send pets"  
+      click_button "Submit application"
+
+      expect(current_path).to eq("/adoption_apps")
+
+      expect(page).to have_content("Please complete all required fields")
+    end
   end
 end
