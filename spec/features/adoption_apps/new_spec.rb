@@ -91,9 +91,11 @@ RSpec.describe "as a visitor" do
 
       expect(page).to have_content("Your application is in")
 
-      expect(page).not_to have_content(@pet_1.name)
-      expect(page).not_to have_content(@pet_2.name)
-      expect(page).to have_content(@pet_3.name)
+      within("#faves") do
+        expect(page).not_to have_content(@pet_1.name)
+        expect(page).not_to have_content(@pet_2.name)
+        expect(page).to have_content(@pet_3.name)
+      end
     end
 
     it "User Story 17, Incomplete application for a Pet

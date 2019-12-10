@@ -14,6 +14,7 @@ class CartController < ApplicationController
   def index
     @view_faved = cart.all_favorites
     @no_faves = cart.empty?
+    @display_applied = Pet.select(:name, :id).joins(:adoption_apps)
   end
 
   def destroy
