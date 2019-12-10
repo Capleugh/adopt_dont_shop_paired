@@ -21,6 +21,21 @@ RSpec.describe "as a visitor" do
                                        approximate_age: 3,
                                        sex: 'male',
                                        status: 'pending adoption')
+      @pet_3 = @shelter_1.pets.create!(image: 'https://i.pinimg.com/originals/03/fe/7d/03fe7d86bcba1c66fa369c3188780e04.jpg',
+                                      name: 'Bartok',
+                                      description: "This bat-eared, yoda cat definitely won't destroy everything in your home.",
+                                      approximate_age: 2,
+                                      sex: 'male',
+                                      status: 'pending adoption')
+      @app_1 = AdoptionApp.create!(name: "bob",  
+                                      address: "100 best lane",
+                                      city: "denver", 
+                                      state: "co",  
+                                      zip: "80204",  
+                                      phone: "111-222-3333",  
+                                      description: "b/c I am really lonely...please send pets" )
+      @app_1.pets << @pet_1
+      @app_1.pets << @pet_2
     end
     it "1. shows me a link for a adopting my favorited pets
         2. When I click said link, I am taken a new application form (cart/new)
@@ -40,32 +55,43 @@ RSpec.describe "as a visitor" do
         click_button 'Fave it'
       end
 
+      visit "/pets/#{@pet_3.id}"
+      within("#pet-#{@pet_3.id}") do
+        click_button 'Fave it'
+      end
+
       visit '/cart'
 
       click_link "Apply"
 
       expect(current_path).to eq("/adoption_apps/new")
 
-      fill_in "name", with: "bob"  
-      fill_in "address", with: "100 best lane"  
-      fill_in "city", with: "denver"  
-      fill_in "state", with: "co"  
-      fill_in "zip", with: "80204"  
-      fill_in "phone", with: "111-222-3333"  
-      fill_in "description", with: "b/c I am really lonely...please send pets"  
+      within "#app" do 
 
-      click_button "Submit application"
-      expect(current_path).to eq("/adoption_apps")
+        within "#pet-#{@pet_1.id}" do 
+          check("applied_pets_")
+        end 
 
-      #new_app = AdoptionApp.last
+        within "#pet-#{@pet_2.id}" do 
+          check("applied_pets_")
+        end 
 
-      #expect(new_app).to have_content("bob")
-      #expect(new_app).to have_content("100 best lane")
-      #expect(new_app).to have_content("denver")
-      #expect(new_app).to have_content("co")
-      #expect(new_app).to have_content("80204")
-      #expect(new_app).to have_content("111-222-3333")
-      #expect(new_app).to have_content("b/c I am really lonely...please send pets")  
+        fill_in "name", with: "bob"  
+        fill_in "address", with: "100 best lane"  
+        fill_in "city", with: "denver"  
+        fill_in "state", with: "co"  
+        fill_in "zip", with: "80204"  
+        fill_in "phone", with: "111-222-3333"  
+        fill_in "description", with: "b/c I am really lonely...please send pets"  
+        click_button "Submit application"
+      end
+
+      expect(current_path).to eq("/cart")
+
+      expect(page).to have_content("Your application for larry and smudge we submitted" ) 
+
+      expect(page).not_to have_content(@pet_1.name) 
+      expect(page).not_to have_content(@pet_2.name) 
 
     end 
   end

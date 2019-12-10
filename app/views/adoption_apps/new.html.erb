@@ -1,24 +1,39 @@
-<%= form_tag '/adoption_apps' do %>
-  <%= label_tag :name %>
-  <%= text_field_tag :name %><br/>
+<section id= "app">
+  <%= form_tag '/adoption_apps' do %>
 
-  <%= label_tag :address %>
-  <%= text_field_tag :address %><br/>
+    <% applied_pets ||= Array.new %>
 
-  <%= label_tag :city %>
-  <%= text_field_tag :city %><br/>
+    <% @faved_pets.each do |id, pet|  %>
+      </br>
+      <section id = "pet-<%= id %>">
+        <%= check_box_tag "applied_pets[]", id %>
+        <%= label_tag pet["name"] %>
+        </br>
+      </section>
+    <% end %>
 
-  <%= label_tag :state %>
-  <%= text_field_tag :state %><br/>
-  
-  <%= label_tag :zip %>
-  <%= text_field_tag :zip %><br/>
+    </br>
+    <%= label_tag :name %>
+    <%= text_field_tag :name %><br/>
 
-  <%= label_tag :phone %>
-  <%= text_field_tag :phone %><br/>
+    <%= label_tag :address %>
+    <%= text_field_tag :address %><br/>
 
-  <%= label_tag :description %>
-  <%= text_field_tag :description %><br/>
+    <%= label_tag :city %>
+    <%= text_field_tag :city %><br/>
 
-  <%= submit_tag 'Submit application' %>
-<% end %>
+    <%= label_tag :state %>
+    <%= text_field_tag :state %><br/>
+    
+    <%= label_tag :zip %>
+    <%= text_field_tag :zip %><br/>
+
+    <%= label_tag :phone %>
+    <%= text_field_tag :phone %><br/>
+
+    <%= label_tag :description %>
+    <%= text_field_tag :description %><br/>
+
+    <%= submit_tag 'Submit application' %>
+  <% end %>
+</section>
