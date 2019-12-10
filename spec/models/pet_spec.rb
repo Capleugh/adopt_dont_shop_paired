@@ -7,15 +7,15 @@ describe Pet, type: :model do
     it { should validate_presence_of :approximate_age}
     it { should validate_presence_of :sex}
   end
-  
+
   describe "relationships" do
     it { should belong_to :shelter}
     it { should have_many :adoption_app_pets}
     it { should have_many(:adoption_apps).through(:adoption_app_pets)}
   end
 
-  describe "all_applied" do 
-    xit ".display_applied" do 
+  describe "all_applied" do
+    xit ".display_applied" do
 
       shelter_1 = Shelter.create!(name: "New Shelter",
                                  address: "908 Beltline Dr",
@@ -35,17 +35,18 @@ describe Pet, type: :model do
                                        approximate_age: 3,
                                        sex: 'male',
                                        status: 'pending adoption')
-      app_1 = AdoptionApp.create!(name: "bob",  
+      app_1 = AdoptionApp.create!(name: "bob",
                                       address: "100 best lane",
-                                      city: "denver", 
-                                      state: "co",  
-                                      zip: "80204",  
-                                      phone: "111-222-3333",  
+                                      city: "denver",
+                                      state: "co",
+                                      zip: "80204",
+                                      phone: "111-222-3333",
                                       description: "b/c I am really lonely...please send pets" )
       app_1.pets << pet_1
       app_1.pets << pet_2
 
-      expect(Pet.display_applied).to eq([pet_1.name, pet_1.id, pet_2.name, pet_2.name]) 
+      expect(Pet.display_applied).to eq([pet_1.name, pet_1.id, pet_2.name, pet_2.name])
 
-    end 
+    end
+  end
 end

@@ -12,10 +12,12 @@
 
 <h2> Applied Pets </h2>
 <% @display_applied.each do |hash|  %>
-  <%= link_to hash[:name], "/pets/#{hash[:id]}"%> 
+  <%= link_to hash[:name], "/pets/#{hash[:id]}"%>
 <% end %>
 
 <br>
+
+<section id="faves">
 <% @view_faved.each do |pet| %>
   <section id = "fav-<%= pet["id"] %>">
     <br>
@@ -26,3 +28,4 @@
     <%= button_to "Unfave it", "/cart/#{pet["id"]}", method: :delete %>
   </section>
 <% end %>
+</section>

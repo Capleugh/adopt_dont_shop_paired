@@ -4,15 +4,15 @@
     <% applied_pets = Array.new %>
 
     <% @faved_pets.each do |id, pet|  %>
-      </br>
+      <br/>
       <section id = "pet-<%= id %>">
         <%= check_box_tag "applied_pets[]", id %>
         <%= label_tag pet["name"] %>
-        </br>
+        <br/>
       </section>
     <% end %>
 
-    </br>
+    <br/>
     <%= label_tag :name %>
     <%= text_field_tag :name %><br/>
 
@@ -24,7 +24,7 @@
 
     <%= label_tag :state %>
     <%= text_field_tag :state %><br/>
-    
+
     <%= label_tag :zip %>
     <%= text_field_tag :zip %><br/>
 
