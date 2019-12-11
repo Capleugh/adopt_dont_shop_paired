@@ -61,6 +61,16 @@ RSpec.describe "as a visitor" do
       click_link "#{@app_1.name}"
       expect(current_path).to eq("/adoption_apps/#{@app_1.id}")
 
+      visit "/pets/#{@pet_2.id}"
+      within("#pet-#{@pet_2.id}") do
+        click_link "View all applications for this pet"
+      end
+
+      expect(page).to have_content(@app_2.name)
+      expect(page).to have_content(@app_2.name)
+
+      click_link "#{@app_2.name}"
+      expect(current_path).to eq("/adoption_apps/#{@app_2.id}")
     end
   end
 end
