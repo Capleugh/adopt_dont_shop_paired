@@ -34,7 +34,6 @@ class AdoptionAppsController < ApplicationController
   end
 
   def show
-    # require "pry"; binding.pry
     @app = AdoptionApp.find(params[:app_id])
     @display_pets = Pet.select(:name, :id).joins(:adoption_apps)
     # require "pry"; binding.pry

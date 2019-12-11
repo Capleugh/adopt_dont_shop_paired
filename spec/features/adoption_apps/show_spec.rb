@@ -27,7 +27,7 @@ RSpec.describe "As a visitor" do
                                       approximate_age: 2,
                                       sex: 'male',
                                       status: 'pending adoption')
-      @app_1 = AdoptionApp.create!(name: "bob",
+      @app_1 = AdoptionApp.create!(name: "Boberino ",
                                       address: "100 best lane",
                                       city: "denver",
                                       state: "co",
@@ -38,7 +38,7 @@ RSpec.describe "As a visitor" do
       @app_1.pets << @pet_2
     end
 
-    it "I can see the application's info including name, address, city, state, zip, phone, description, and all pets included in app" do
+    xit "I can see the application's info including name, address, city, state, zip, phone, description, and all pets included in app" do
 
       visit "/adoption_apps/#{@app_1.id}"
 
@@ -54,5 +54,33 @@ RSpec.describe "As a visitor" do
         expect(page).to have_content(@pet_2.name)
       end
     end
+
+    it "when I click the approve link which should appear next to each pet on app, I amm taken to that pet's show page where I see that adoptable status has changed to pending" do
+      visit "/adoption_apps/#{@app_1.id}"
+
+      within("#pet-#{@pet_1.id}") do
+        click_link 'Approve'
+      end
+
+
+      expect(current_path).to eq("/pets/#{@pet_1.id}")
+
+      expect(page).to have_content("Pending")
+      expect(page).to_not have_content("Adoptable")
+      expect(page).to have_content("On hold for Boberino")
+
+      visit "/adoption_apps/#{@app_1.id}"
+
+      within("#pet-#{@pet_2.id}") do
+        click_link 'Approve'
+      end
+
+      expect(current_path).to eq("/pets/#{@pet_2.id}")
+
+      expect(page).to have_content("Pending")
+      expect(page).to_not have_content("Adoptable")
+      expect(page).to have_content("On hold for Boberino")
+    end
+
   end
 end

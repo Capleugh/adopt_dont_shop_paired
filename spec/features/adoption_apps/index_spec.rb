@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "as a visitor" do
   describe "when I visit the cart index page" do
-    before(:each) do 
+    before(:each) do
       @shelter_1 = Shelter.create!(name: "New Shelter",
                                  address: "908 Beltline Dr",
                                  city: "Richardson",
@@ -75,9 +75,9 @@ RSpec.describe "as a visitor" do
       expect(current_path).to eq("/adoption_apps/#{@app_2.id}")
     end
 
-    it "shows me a message indicating that there are no applicaitons availalbe 
-        for a pet that does not have applications on them" do 
-    
+    it "shows me a message indicating that there are no applicaitons availalbe
+        for a pet that does not have applications on them" do
+
       visit "/pets/#{@pet_1.id}/adoption_apps"
 
       within("#apply_pet") do

@@ -1,5 +1,4 @@
 <section id="pet-<%= @pet.id%>">
-
   <% if cart.contents.keys.include?(@pet.id.to_s) %>
     <p><%= button_to 'Unfave it', "/cart/#{@pet.id}", method: :delete %></p>
   <% else %>
@@ -10,10 +9,13 @@
   <p>Description: <%= @pet.description %></p>
   <p>Age: <%= @pet.approximate_age %></p>
   <p>Sex: <%= @pet.sex %></p>
-  <p>St=atus: <%= @pet.status %></p>
+  <% if @pet_app %>
+    <p>Status: <%= @pet.status = "Pending" %></p>
+    <p>On hold for <%= @pet_app.name %></p>
+  <% end %>
+  <p>Status: <%= @pet.status %></p>
   <%= image_tag(@pet.image) %><br/>
   <p><%= link_to 'Update', "/pets/#{@pet.id}/edit" %> <%= button_to 'Delete', "/pets/#{@pet.id}", method: :delete %></p>
-
-  <%= link_to "View all applications for this pet", "/pets/#{@pet.id}/adoption_apps" %>
+<%= link_to "View all applications for this pet", "/pets/#{@pet.id}/adoption_apps" %>
 
 </section>

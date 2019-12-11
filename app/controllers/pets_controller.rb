@@ -9,7 +9,12 @@ class PetsController < ApplicationController
   end
 
   def show
+
     @pet = Pet.find(params[:id])
+    @pet_app = AdoptionApp.select(:id, :name).joins(:pets).distinct.last
+    # binding.pry
+
+    # we probably need an active record query to link these things but really think about it.
     # @cart = Cart.new(session[:cart])
     # do we need to access cart here or was that a mistake?
   end

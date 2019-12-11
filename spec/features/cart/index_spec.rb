@@ -27,12 +27,12 @@ RSpec.describe "as a visitor" do
                                       approximate_age: 2,
                                       sex: 'male',
                                       status: 'pending adoption')
-      @app_1 = AdoptionApp.create!(name: "bob",  
+      @app_1 = AdoptionApp.create!(name: "bob",
                                       address: "100 best lane",
-                                      city: "denver", 
-                                      state: "co",  
-                                      zip: "80204",  
-                                      phone: "111-222-3333",  
+                                      city: "denver",
+                                      state: "co",
+                                      zip: "80204",
+                                      phone: "111-222-3333",
                                       description: "b/c I am really lonely...please send pets" )
       @app_1.pets << @pet_1
       @app_1.pets << @pet_2
@@ -127,9 +127,9 @@ RSpec.describe "as a visitor" do
     end
 
     it "I see a list of all pets that have at leaset one application on them
-        and their name is a link to their show page" do 
+        and their name is a link to their show page" do
 
-      #fav some pets and apply for them  
+      #fav some pets and apply for them
       visit "/pets/#{@pet_1.id}"
       within("#pet-#{@pet_1.id}") do
         click_button 'Fave it'
@@ -151,27 +151,27 @@ RSpec.describe "as a visitor" do
 
       expect(current_path).to eq("/adoption_apps/new")
 
-      within "#app" do 
+      within "#app" do
 
-        within "#pet-#{@pet_1.id}" do 
+        within "#pet-#{@pet_1.id}" do
           check("applied_pets_")
-        end 
+        end
 
-        within "#pet-#{@pet_2.id}" do 
+        within "#pet-#{@pet_2.id}" do
           check("applied_pets_")
-        end 
+        end
 
-        fill_in "name", with: "bob"  
-        fill_in "address", with: "100 best lane"  
-        fill_in "city", with: "denver"  
-        fill_in "state", with: "co"  
-        fill_in "zip", with: "80204"  
-        fill_in "phone", with: "111-222-3333"  
-        fill_in "description", with: "b/c I am really lonely...please send pets"  
+        fill_in "name", with: "bob"
+        fill_in "address", with: "100 best lane"
+        fill_in "city", with: "denver"
+        fill_in "state", with: "co"
+        fill_in "zip", with: "80204"
+        fill_in "phone", with: "111-222-3333"
+        fill_in "description", with: "b/c I am really lonely...please send pets"
 
         click_button "Submit application"
       end
-      
+
       #now that we have some faved pets - we should see them
       visit '/cart'
 
