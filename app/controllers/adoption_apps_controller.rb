@@ -4,6 +4,14 @@ class AdoptionAppsController < ApplicationController
     @faved_pets = cart.contents
   end
 
+  def index 
+    # AdoptionApp.find(:name, :id).joins(:)
+    # Pet.find(params[:pet_id]).adoption_apps
+    # Pet.select(:name).joins(:adoption_apps)
+    @names_applied_to_this_pet = AdoptionApp.select(:name, :id).joins(:pets).distinct
+    
+  end 
+
   def create
     pets = Pet.find(params[:applied_pets])
     app = AdoptionApp.new(app_params)

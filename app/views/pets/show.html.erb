@@ -10,7 +10,10 @@
   <p>Description: <%= @pet.description %></p>
   <p>Age: <%= @pet.approximate_age %></p>
   <p>Sex: <%= @pet.sex %></p>
-  <p>Status: <%= @pet.status %></p>
+  <p>St=atus: <%= @pet.status %></p>
   <%= image_tag(@pet.image) %><br/>
   <p><%= link_to 'Update', "/pets/#{@pet.id}/edit" %> <%= button_to 'Delete', "/pets/#{@pet.id}", method: :delete %></p>
+
+  <%= link_to "View all applications for this pet", "/pets/#{@pet.id}/adoption_apps" %>
+
 </section>
