@@ -10,7 +10,7 @@
     Pets applied for: <% @app.pets.each do |pet| %>
       <section id="pet-<%= pet.id %>">
                        <%= pet.name %>
-                       <%= link_to 'Approve', "/pets/#{pet.id}/adoption_apps/#{@app.id}" %> </section>
+                       <%= link_to 'Approve', "/pets/#{pet.id}/adoption_apps/#{@app.id}" , method: :patch %> </section>
                   <% end %>
   </p>
 </section>

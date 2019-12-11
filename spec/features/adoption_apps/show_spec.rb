@@ -65,6 +65,8 @@ RSpec.describe "As a visitor" do
 
       expect(current_path).to eq("/pets/#{@pet_1.id}/adoption_apps/#{@app_1.id}")
 
+      visit "/pets/#{@pet_1.id}"
+
       expect(page).to have_content("Pending")
       expect(page).to_not have_content("Adoptable")
       expect(page).to have_content("On hold for Boberino")
@@ -76,6 +78,8 @@ RSpec.describe "As a visitor" do
       end
 
       expect(current_path).to eq("/pets/#{@pet_2.id}/adoption_apps/#{@app_1.id}")
+
+      visit "/pets/#{@pet_2.id}"
 
       expect(page).to have_content("Pending")
       expect(page).to_not have_content("Adoptable")
