@@ -54,5 +54,28 @@ RSpec.describe "As a visitor" do
         expect(page).to have_content(@pet_2.name)
       end
     end
+
+    it "when I click the approve link which should appear next to each pet on app, I amm taken to that pet's show page where I see that adoptable status has changed to pending" do
+      visit "/adoption_apps/#{@app_1.id}"
+
+      within("#pet-#{@pet_1.id}") do
+        click_link 'Approve'
+      end
+
+      expect(current_path).to eq("/pets/#{@pet_1.id}")
+
+      visit "/adoption_apps/#{@app_1.id}"
+      
+      within("#pet-#{@pet_2.id}") do
+        click_link 'Approve'
+      end
+
+      expect(current_path).to eq("/pets/#{@pet_2.id}")
+
+    end
+
+    xit "I also see a message which says who the pet is on hold for" do
+
+    end
   end
 end
