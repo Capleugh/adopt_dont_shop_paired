@@ -9,10 +9,12 @@
   <p>Description: <%= @pet.description %></p>
   <p>Age: <%= @pet.approximate_age %></p>
   <p>Sex: <%= @pet.sex %></p>
+  <% if @pet_app %>
+    <p>Status: <%= @pet.status = "Pending" %></p>
+    <p>On hold for <%= @pet_app.name %></p>
+  <% end %>
   <p>Status: <%= @pet.status %></p>
   <%= image_tag(@pet.image) %><br/>
   <p><%= link_to 'Update', "/pets/#{@pet.id}/edit" %> <%= button_to 'Delete', "/pets/#{@pet.id}", method: :delete %></p>
 
-
-  <p>On hold for <%= @applicant %></p> 
 </section>

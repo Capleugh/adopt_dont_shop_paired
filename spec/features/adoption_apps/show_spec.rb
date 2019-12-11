@@ -82,8 +82,5 @@ RSpec.describe "As a visitor" do
       expect(page).to have_content("On hold for Boberino")
     end
 
-    xit "I also see a message which says who the pet is on hold for" do
-
-    end
   end
 end
