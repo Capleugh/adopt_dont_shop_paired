@@ -13,6 +13,7 @@ class AdoptionAppsController < ApplicationController
   end 
 
   def create
+    binding.pry
     pets = Pet.find(params[:applied_pets])
     app = AdoptionApp.new(app_params)
 

@@ -9,10 +9,17 @@ class PetsController < ApplicationController
   end
 
   def show
+    if params[:pet_id] != nil
+      @pet = Pet.find(params[:pet_id])
+    else
+      @pet = Pet.find(params[:id])
+    end
 
-    @pet = Pet.find(params[:id])
+    if params[:app_id] != nil
+      @pet.update!(status: "Pending")
+    end
+
     @pet_app = AdoptionApp.select(:id, :name).joins(:pets).distinct.last
-    # binding.pry
 
     # we probably need an active record query to link these things but really think about it.
     # @cart = Cart.new(session[:cart])
