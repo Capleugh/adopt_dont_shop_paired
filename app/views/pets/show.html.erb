@@ -1,5 +1,4 @@
 <section id="pet-<%= @pet.id%>">
-
   <% if cart.contents.keys.include?(@pet.id.to_s) %>
     <p><%= button_to 'Unfave it', "/cart/#{@pet.id}", method: :delete %></p>
   <% else %>
@@ -13,4 +12,7 @@
   <p>Status: <%= @pet.status %></p>
   <%= image_tag(@pet.image) %><br/>
   <p><%= link_to 'Update', "/pets/#{@pet.id}/edit" %> <%= button_to 'Delete', "/pets/#{@pet.id}", method: :delete %></p>
+
+
+  <p>On hold for <%= @applicant %></p> 
 </section>
