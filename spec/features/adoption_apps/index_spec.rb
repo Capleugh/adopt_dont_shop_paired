@@ -41,14 +41,16 @@ RSpec.describe "as a visitor" do
                                       zip: "22212",
                                       phone: "555-666-8888",
                                       description: "I am the best" )
+    end
+    it "I see a list of all pets that have at least one application on them
+        and their name is a link to their show page" do
+
+      #apply for some of those pets
       @app_1.pets << @pet_1
       @app_1.pets << @pet_2
 
       @app_2.pets << @pet_1
       @app_2.pets << @pet_2
-    end
-    it "I see a list of all pets that have at least one application on them
-        and their name is a link to their show page" do
 
       visit "/pets/#{@pet_1.id}"
       within("#pet-#{@pet_1.id}") do
@@ -71,6 +73,16 @@ RSpec.describe "as a visitor" do
 
       click_link "#{@app_2.name}"
       expect(current_path).to eq("/adoption_apps/#{@app_2.id}")
+    end
+
+    it "shows me a message indicating that there are no applicaitons availalbe 
+        for a pet that does not have applications on them" do 
+    
+      visit "/pets/#{@pet_1.id}/adoption_apps"
+
+      within("#apply_pet") do
+        expect(page).to have_content("There are no current applications on this pet")
+      end
     end
   end
 end

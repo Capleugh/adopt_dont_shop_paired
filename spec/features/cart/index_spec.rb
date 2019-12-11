@@ -38,7 +38,7 @@ RSpec.describe "as a visitor" do
       @app_1.pets << @pet_2
     end
 
-    xit "shows me a list of all my favorite pets with
+    it "shows me a list of all my favorite pets with
     -pets name
     -pets image" do
 
@@ -67,7 +67,7 @@ RSpec.describe "as a visitor" do
       end
     end
 
-    xit "has a link next to each pet to remove from faves index and when I click it it removes and decrements" do
+    it "has a link next to each pet to remove from faves index and when I click it it removes and decrements" do
 
       visit "/pets/#{@pet_1.id}"
       within("#pet-#{@pet_1.id}") do
@@ -97,7 +97,7 @@ RSpec.describe "as a visitor" do
       expect(page).to have_content("Favorites: 0")
     end
 
-    xit "when I have not added any pets to my favorites list I see text indicating I have no favorited indicating that I have no favorited pets" do
+    it "when I have not added any pets to my favorites list I see text indicating I have no favorited indicating that I have no favorited pets" do
       visit "/cart"
 
       expect(page).to have_content("Favorites: 0")
@@ -105,7 +105,7 @@ RSpec.describe "as a visitor" do
     end
 
     # ask about preferred test structure for poros
-    xit "I see a link to remove all favorited pets and am redirected back to same page where I see no faved pets text and favorites indicator is 0" do
+    it "I see a link to remove all favorited pets and am redirected back to same page where I see no faved pets text and favorites indicator is 0" do
       visit "/pets/#{@pet_1.id}"
       within("#pet-#{@pet_1.id}") do
         click_button 'Fave it'

@@ -5,11 +5,11 @@ class AdoptionAppsController < ApplicationController
   end
 
   def index 
-    # AdoptionApp.find(:name, :id).joins(:)
-    # Pet.find(params[:pet_id]).adoption_apps
-    # Pet.select(:name).joins(:adoption_apps)
     @names_applied_to_this_pet = AdoptionApp.select(:name, :id).joins(:pets).distinct
-    
+
+    if @names_applied_to_this_pet.empty? 
+      @if_no_apps = "There are no current applications on this pet"
+    end
   end 
 
   def create
