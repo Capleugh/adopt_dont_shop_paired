@@ -3,12 +3,12 @@ require 'rails_helper'
 RSpec.describe "As a visitor" do
   describe "when I vist the pets show page" do
     it "when I click the link to edit pet, I am taken to a form to edit pet's data including image, name, description, age, and sex" do
-      shelter_1 = Shelter.create!(name: "New Shelter",
+      shelter_1 = Shelter.create(name: "New Shelter",
                                   address: "908 Beltline Dr",
                                   city: "Richardson",
                                   state: "TX",
                                   zip: "75081")
-      pet_1 = shelter_1.pets.create!(image: 'https://s3.amazonaws.com/playbarkrun/wp-content/uploads/2018/05/11154028/1920px-V%C3%A4stg%C3%B6taspets_hane_5_%C3%A5r.jpg',
+      pet_1 = shelter_1.pets.create(image: 'https://s3.amazonaws.com/playbarkrun/wp-content/uploads/2018/05/11154028/1920px-V%C3%A4stg%C3%B6taspets_hane_5_%C3%A5r.jpg',
                                      name: 'Larry',
                                      description: 'Sweet, pint-sized ball of fluff and love.',
                                      approximate_age: 5,
@@ -47,18 +47,18 @@ RSpec.describe "As a visitor" do
     end
 
     it "when I visit the pet index page I see a link next to each pet to update their information" do
-      shelter_1 = Shelter.create!(name: "New Shelter",
+      shelter_1 = Shelter.create(name: "New Shelter",
                                   address: "908 Beltline Dr",
                                   city: "Richardson",
                                   state: "TX",
                                   zip: "75081")
-      pet_1 = shelter_1.pets.create!(image: 'https://s3.amazonaws.com/playbarkrun/wp-content/uploads/2018/05/11154028/1920px-V%C3%A4stg%C3%B6taspets_hane_5_%C3%A5r.jpg',
+      pet_1 = shelter_1.pets.create(image: 'https://s3.amazonaws.com/playbarkrun/wp-content/uploads/2018/05/11154028/1920px-V%C3%A4stg%C3%B6taspets_hane_5_%C3%A5r.jpg',
                                      name: 'Larry',
                                      description: 'Sweet, pint-sized ball of fluff and love.',
                                      approximate_age: 5,
                                      sex: 'female',
                                      status: 'adoptable')
-      pet_2 = shelter_1.pets.create!(image: 'https://i.pinimg.com/originals/03/fe/7d/03fe7d86bcba1c66fa369c3188780e04.jpg',
+      pet_2 = shelter_1.pets.create(image: 'https://i.pinimg.com/originals/03/fe/7d/03fe7d86bcba1c66fa369c3188780e04.jpg',
                                      name: 'Bartok',
                                      description: "This bat-eared, yoda cat definitely won't destroy everything in your home.",
                                      approximate_age: 1,
@@ -98,18 +98,18 @@ RSpec.describe "As a visitor" do
     end
 
     it "when I visit the shelter pets index page I see a link next to each pet to update their information" do
-      shelter_1 = Shelter.create!(name: "New Shelter",
+      shelter_1 = Shelter.create(name: "New Shelter",
                                   address: "908 Beltline Dr",
                                   city: "Richardson",
                                   state: "TX",
                                   zip: "75081")
-      pet_1 = shelter_1.pets.create!(image: 'https://s3.amazonaws.com/playbarkrun/wp-content/uploads/2018/05/11154028/1920px-V%C3%A4stg%C3%B6taspets_hane_5_%C3%A5r.jpg',
+      pet_1 = shelter_1.pets.create(image: 'https://s3.amazonaws.com/playbarkrun/wp-content/uploads/2018/05/11154028/1920px-V%C3%A4stg%C3%B6taspets_hane_5_%C3%A5r.jpg',
                                      name: 'Larry',
                                      description: 'Sweet, pint-sized ball of fluff and love.',
                                      approximate_age: 5,
                                      sex: 'female',
                                      status: 'adoptable')
-      pet_2 = shelter_1.pets.create!(image: 'https://i.pinimg.com/originals/03/fe/7d/03fe7d86bcba1c66fa369c3188780e04.jpg',
+      pet_2 = shelter_1.pets.create(image: 'https://i.pinimg.com/originals/03/fe/7d/03fe7d86bcba1c66fa369c3188780e04.jpg',
                                      name: 'Bartok',
                                      description: "This bat-eared, yoda cat definitely won't destroy everything in your home.",
                                      approximate_age: 1,
