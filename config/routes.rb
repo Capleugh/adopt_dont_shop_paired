@@ -14,9 +14,8 @@ Rails.application.routes.draw do
   get '/pets/:id/edit', to: 'pets#edit'
   patch '/pets/:id', to: 'pets#update'
   delete '/pets/:id', to: 'pets#destroy'
+
   get '/shelters/:shelter_id/pets', to: 'pets#index'
-  # get '/shelters/:shelter_id/pets', to: 'shelter_pets#index'
-  # create a new controller
   get '/shelters/:shelter_id/pets/new', to: 'pets#new'
   post '/shelters/:shelter_id/pets', to: 'pets#create'
   get '/shelters/:shelter_id/pets/:id/edit', to: 'pets#edit'
@@ -29,7 +28,6 @@ Rails.application.routes.draw do
 
   get '/cart', to: 'cart#index'
   patch '/cart/pets/:pet_id', to: 'cart#update'
-
   delete '/cart', to: 'cart#destroy_all'
   delete '/cart/:pet_id', to: 'cart#destroy'
 

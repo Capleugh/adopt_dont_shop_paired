@@ -14,7 +14,7 @@ RSpec.describe "As a visitor" do
                                        description: 'sweet, pint-sized ball of fluff and love.',
                                        approximate_age: 5,
                                        sex: 'female')
-                                       
+
       @pet_2 = @shelter_1.pets.create!(image: 'https://i.pinimg.com/originals/f8/27/ed/f827ed9a704146f65b96226f430abf3c.png',
                                        name: 'smudge',
                                        description: 'very memeable. hates vegetals.',
@@ -24,8 +24,8 @@ RSpec.describe "As a visitor" do
                                       name: 'Bartok',
                                       description: "This bat-eared, yoda cat definitely won't destroy everything in your home.",
                                       approximate_age: 2,
-                                      sex: 'male') 
-                                      
+                                      sex: 'male')
+
       @app_1 = AdoptionApp.create!(name: "Boberino",
                                       address: "100 best lane",
                                       city: "denver",
@@ -59,13 +59,12 @@ RSpec.describe "As a visitor" do
       visit "/adoption_apps/#{@app_1.id}"
 
       within("#pet-#{@pet_1.id}") do
+
         click_link 'Approve'
       end
 
 
-      expect(current_path).to eq("/pets/#{@pet_1.id}/adoption_apps/#{@app_1.id}")
-
-      visit "/pets/#{@pet_1.id}"
+      expect(current_path).to eq("/pets/#{@pet_1.id}")
 
       expect(page).to have_content("Pending")
       expect(page).to_not have_content("Adoptable")
@@ -77,7 +76,7 @@ RSpec.describe "As a visitor" do
         click_link 'Approve'
       end
 
-      expect(current_path).to eq("/pets/#{@pet_2.id}/adoption_apps/#{@app_1.id}")
+      expect(current_path).to eq("/pets/#{@pet_2.id}")
 
       visit "/pets/#{@pet_2.id}"
 

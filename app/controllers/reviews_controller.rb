@@ -24,7 +24,7 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:review_id])
     @shelter_id = @review.shelter_id
     @review.update(review_params)
-# require "pry"; binding.pry
+
     if @review.save
       redirect_to "/shelters/#{@shelter_id}"
     else

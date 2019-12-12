@@ -104,7 +104,6 @@ RSpec.describe "as a visitor" do
       expect(page).to have_content("You have no faved pets.")
     end
 
-    # ask about preferred test structure for poros
     it "I see a link to remove all favorited pets and am redirected back to same page where I see no faved pets text and favorites indicator is 0" do
       visit "/pets/#{@pet_1.id}"
       within("#pet-#{@pet_1.id}") do
@@ -129,7 +128,6 @@ RSpec.describe "as a visitor" do
     it "I see a list of all pets that have at leaset one application on them
         and their name is a link to their show page" do
 
-      #fav some pets and apply for them
       visit "/pets/#{@pet_1.id}"
       within("#pet-#{@pet_1.id}") do
         click_button 'Fave it'
@@ -172,7 +170,6 @@ RSpec.describe "as a visitor" do
         click_button "Submit application"
       end
 
-      #now that we have some faved pets - we should see them
       visit '/cart'
 
       expect(page).to have_content(@pet_1.name)

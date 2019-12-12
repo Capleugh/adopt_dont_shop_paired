@@ -10,16 +10,6 @@ class PetsController < ApplicationController
 
   def show
     @pet = Pet.find(params[:id])
-
-    if @pet.adoption_apps
-      @pet.update!(status: "Pending")
-    end
-
-    @pet_app = AdoptionApp.select(:id, :name).joins(:pets).distinct
-
-    # we probably need an active record query to link these things but really think about it.
-    # @cart = Cart.new(session[:cart])
-    # do we need to access cart here or was that a mistake?
   end
 
   def new

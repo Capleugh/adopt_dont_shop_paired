@@ -53,6 +53,7 @@ RSpec.describe "as a visitor" do
       @app_2.pets << @pet_2
 
       visit "/pets/#{@pet_1.id}"
+      
       within("#pet-#{@pet_1.id}") do
         click_link "View all applications for this pet"
       end
