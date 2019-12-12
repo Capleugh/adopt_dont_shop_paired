@@ -18,7 +18,6 @@ class Cart
   end
 
   def empty?
-    # require "pry"; binding.pry
     @contents.count == 0
   end
 

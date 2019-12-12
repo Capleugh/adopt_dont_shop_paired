@@ -13,21 +13,20 @@ RSpec.describe "As a visitor" do
                                        name: 'larry',
                                        description: 'sweet, pint-sized ball of fluff and love.',
                                        approximate_age: 5,
-                                       sex: 'female',
-                                       status: 'adoptable')
+                                       sex: 'female')
+
       @pet_2 = @shelter_1.pets.create!(image: 'https://i.pinimg.com/originals/f8/27/ed/f827ed9a704146f65b96226f430abf3c.png',
                                        name: 'smudge',
                                        description: 'very memeable. hates vegetals.',
                                        approximate_age: 3,
-                                       sex: 'male',
-                                       status: 'pending adoption')
+                                       sex: 'male')
       @pet_3 = @shelter_1.pets.create!(image: 'https://i.pinimg.com/originals/03/fe/7d/03fe7d86bcba1c66fa369c3188780e04.jpg',
                                       name: 'Bartok',
                                       description: "This bat-eared, yoda cat definitely won't destroy everything in your home.",
                                       approximate_age: 2,
-                                      sex: 'male',
-                                      status: 'pending adoption')
-      @app_1 = AdoptionApp.create!(name: "bob",
+                                      sex: 'male')
+
+      @app_1 = AdoptionApp.create!(name: "Boberino",
                                       address: "100 best lane",
                                       city: "denver",
                                       state: "co",
@@ -50,9 +49,41 @@ RSpec.describe "As a visitor" do
         expect(page).to have_content(@app_1.zip)
         expect(page).to have_content(@app_1.phone)
         expect(page).to have_content(@app_1.description)
+
         expect(page).to have_content(@pet_1.name)
         expect(page).to have_content(@pet_2.name)
       end
     end
+
+    it "when I click the approve link which should appear next to each pet on app, I amm taken to that pet's show page where I see that adoptable status has changed to pending" do
+      visit "/adoption_apps/#{@app_1.id}"
+
+      within("#pet-#{@pet_1.id}") do
+
+        click_link 'Approve'
+      end
+
+
+      expect(current_path).to eq("/pets/#{@pet_1.id}")
+
+      expect(page).to have_content("Pending")
+      expect(page).to_not have_content("Adoptable")
+      expect(page).to have_content("On hold for Boberino")
+
+      visit "/adoption_apps/#{@app_1.id}"
+
+      within("#pet-#{@pet_2.id}") do
+        click_link 'Approve'
+      end
+
+      expect(current_path).to eq("/pets/#{@pet_2.id}")
+
+      visit "/pets/#{@pet_2.id}"
+
+      expect(page).to have_content("Pending")
+      expect(page).to_not have_content("Adoptable")
+      expect(page).to have_content("On hold for Boberino")
+    end
+
   end
 end

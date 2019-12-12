@@ -6,8 +6,11 @@
   <p>Zip: <%=@app.zip %></p>
   <p>Phone: <%=@app.phone %></p>
   <p>Tell us a bit about why you think you'd make a good pet parent: <%=@app.description %></p>
-  <p>Pets applied for: <% @app.pets.each do |pet| %>
-                          <%= pet.name %>
-                        <% end %>
+  <p> 
+    Pets applied for: <% @app.pets.each do |pet| %>
+      <section id="pet-<%= pet.id %>">
+                       <%= pet.name %>
+                       <%= link_to 'Approve', "/pets/#{pet.id}/adoption_apps/#{@app.id}" , method: :patch %> </section>
+                  <% end %>
   </p>
 </section>

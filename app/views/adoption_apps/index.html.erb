@@ -1,0 +1,7 @@
+<h1>names of the all the applicants for this pet </h1>
+<section id="apply_pet">
+  <%= @if_no_apps %>
+  <% @names_applied_to_this_pet.each do |element|%>
+    <%= link_to element[:name], "/adoption_apps/#{element[:id]}" %>
+  <% end %>
+</section>

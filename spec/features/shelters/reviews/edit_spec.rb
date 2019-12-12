@@ -39,7 +39,7 @@ RSpec.describe "As a visitor" do
       fill_in 'opt_pic', with: 'https://i.imgur.com/hl4dONR.jpg'
 
       click_on 'Update Review'
-      # save_and_open_page
+      
       expect(current_path).to eq("/shelters/#{@shelter_1.id}")
       expect(page).to have_content('Really weird vibes')
       expect(page).to have_content(1)

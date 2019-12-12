@@ -19,25 +19,16 @@ class CartController < ApplicationController
 
   def destroy
     pet = Pet.find(params[:pet_id])
-    # MIKE why do we not have to call session[:cart] here?
     cart.remove_favorite(pet.id)
     flash[:notice] = "#{pet.name} has been unfaved from your favorites list!"
 
-    # ask MIKE about why we dont need a pet "/pets/#{params[:pet_id]} redirect with the following method"
     redirect_back(fallback_location: "/cart")
-    # needs refactor, this conditional is not explicit enough
-    # if request.referrer.include?("cart") #== "#{request.env["HTTP_REFERER"]}/cart"request.referrer == request.env["HTTP_REFERER"]
-    #   redirect_to "/cart"
-    # else
-    #   redirect_to "/pets/#{params[:pet_id]}"
-    # end
+    # this could have been moved to the update method
   end
 
   def destroy_all
-    #ask MIKE whether this is an acceptable action
     cart.remove_all
     session[:cart] = cart.contents
-    # MIKE why does session[:cart] need to be updated for index to display correctly?
 
     redirect_to "/cart"
   end

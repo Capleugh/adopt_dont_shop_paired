@@ -10,8 +10,6 @@ class PetsController < ApplicationController
 
   def show
     @pet = Pet.find(params[:id])
-    # @cart = Cart.new(session[:cart])
-    # do we need to access cart here or was that a mistake?
   end
 
   def new

@@ -10,9 +10,11 @@
 <br>
 <%= button_to "Remove all faves", "/cart", method: :delete %>
 
-<h2> Applied Pets </h2>
+<h2> Pets Who Have Been Applied For </h2>
 <% @display_applied.each do |hash|  %>
-  <%= link_to hash[:name], "/pets/#{hash[:id]}"%>
+<li>
+  <uo><%= link_to hash[:name], "/pets/#{hash[:id]}"%>
+</li>
 <% end %>
 
 <br>

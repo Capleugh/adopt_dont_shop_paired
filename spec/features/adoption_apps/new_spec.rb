@@ -158,30 +158,5 @@ RSpec.describe "as a visitor" do
 
       expect(page).to have_content("Please complete all required fields")
     end
-
-    xit "handles edge case of no pets applied for" do
-
-      visit "/pets/#{@pet_3.id}"
-      within("#pet-#{@pet_3.id}") do
-        click_button 'Fave it'
-      end
-
-      visit '/cart'
-
-      click_link "Apply"
-
-      fill_in "name", with: "bob"
-      fill_in "address", with: "100 best lane"
-      fill_in "city", with: "denver"
-      fill_in "state", with: "co"
-      fill_in "zip", with: "80204"
-      fill_in "phone", with: "111-222-3333"
-      fill_in "description", with: "b/c I am really lonely...please send pets"
-      click_button "Submit application"
-
-      expect(current_path).to eq("/adoption_apps")
-
-      expect(page).to have_content("Please complete all required fields")
-    end
   end
 end
