@@ -33,8 +33,18 @@ RSpec.describe "As a visitor" do
                                       zip: "80204",
                                       phone: "111-222-3333",
                                       description: "b/c I am really lonely...please send pets" )
+      @app_2= AdoptionApp.create!(name: "calley",
+                                      address: "super",
+                                      city: "west",
+                                      state: "tx",
+                                      zip: "34235",
+                                      phone: "555-666-7777",
+                                      description: "yep...need them kitties" )
       @app_1.pets << @pet_1
       @app_1.pets << @pet_2
+
+      @app_2.pets << @pet_1
+      @app_2.pets << @pet_2
     end
 
     it "I can see the application's info including name, address, city, state, zip, phone, description, and all pets included in app" do
@@ -55,7 +65,7 @@ RSpec.describe "As a visitor" do
       end
     end
 
-    it "when I click the approve link which should appear next to each pet on app, I amm taken to that pet's show page where I see that adoptable status has changed to pending" do
+    it "when I click the approve link which should appear next to each pet on app, I amm taken to that pet's show page where I see that adoptable status has changed to pending and this allows for multiple pets on the same app" do
       visit "/adoption_apps/#{@app_1.id}"
 
       within("#pet-#{@pet_1.id}") do
@@ -69,6 +79,8 @@ RSpec.describe "As a visitor" do
       expect(page).to have_content("Pending")
       expect(page).to_not have_content("Adoptable")
       expect(page).to have_content("On hold for Boberino")
+      visit "/pets/#{@pet_2.id}"
+      expect(page).to have_content('Adoptable')
 
       visit "/adoption_apps/#{@app_1.id}"
 
@@ -83,7 +95,12 @@ RSpec.describe "As a visitor" do
       expect(page).to have_content("Pending")
       expect(page).to_not have_content("Adoptable")
       expect(page).to have_content("On hold for Boberino")
-    end
 
+      visit "/pets/#{@pet_1.id}"
+
+      expect(page).to have_content("Pending")
+      expect(page).to_not have_content("Adoptable")
+      expect(page).to have_content("On hold for Boberino")
+    end
   end
 end
