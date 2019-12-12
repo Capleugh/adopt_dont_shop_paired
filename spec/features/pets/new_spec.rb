@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "As a visitor" do
   it "I can click a link on the shelter pets index page and fill out a form to create a new pet" do
-      shelter_1 = Shelter.create!(name: "New Shelter",
+      shelter_1 = Shelter.create(name: "New Shelter",
                                  address: "908 Beltline Dr",
                                  city: "Richardson",
                                  state: "TX",

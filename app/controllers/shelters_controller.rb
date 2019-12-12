@@ -11,7 +11,7 @@ class SheltersController < ApplicationController
   end
 
   def create
-    Shelter.create!(shelter_params)
+    Shelter.create(shelter_params)
 
     redirect_to "/shelters"
   end

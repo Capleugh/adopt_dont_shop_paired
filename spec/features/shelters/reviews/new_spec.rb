@@ -3,12 +3,12 @@ require 'rails_helper'
 RSpec.describe "As a visitior" do
   describe "when I visit shelter's show page" do
     before(:each) do
-      @shelter_1 = Shelter.create!(
+      @shelter_1 = Shelter.create(
                       name: "Rescuers Up Over",
                       address: "246 Glenwood Dr",
                       city: "Boulder",
                       state: "CO",
-                      zip: "80304")                         
+                      zip: "80304")
     end
 
     it "when I click the link to creat a new review, I see a form which has title, rating, content, and optional image field that redirects to shelter's show page where review is displayed" do

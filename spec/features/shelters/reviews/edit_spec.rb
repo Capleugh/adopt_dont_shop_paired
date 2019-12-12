@@ -3,13 +3,13 @@ require 'rails_helper'
 RSpec.describe "As a visitor" do
   describe "when I visit a shelter's show page" do
     before(:each) do
-      @shelter_1 = Shelter.create!(
+      @shelter_1 = Shelter.create(
                       name: "Rescuers Up Over",
                       address: "246 Glenwood Dr",
                       city: "Boulder",
                       state: "CO",
                       zip: "80304")
-      @review_1 = @shelter_1.reviews.create!(
+      @review_1 = @shelter_1.reviews.create(
                       title: "Love them doggies",
                       rating: 5,
                       content: "some content",
@@ -39,7 +39,7 @@ RSpec.describe "As a visitor" do
       fill_in 'opt_pic', with: 'https://i.imgur.com/hl4dONR.jpg'
 
       click_on 'Update Review'
-      
+
       expect(current_path).to eq("/shelters/#{@shelter_1.id}")
       expect(page).to have_content('Really weird vibes')
       expect(page).to have_content(1)

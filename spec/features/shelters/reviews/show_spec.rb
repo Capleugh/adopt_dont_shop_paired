@@ -3,13 +3,13 @@ require 'rails_helper'
 RSpec.describe "as a vistor" do
   describe "when I visit a shelters show page" do
     before(:each) do
-      @shelter_1 = Shelter.create!(
+      @shelter_1 = Shelter.create(
                       name: "Rescuers Up Over",
                       address: "246 Glenwood Dr",
                       city: "Boulder",
                       state: "CO",
                       zip: "80304")
-      @review_1 = @shelter_1.reviews.create!(
+      @review_1 = @shelter_1.reviews.create(
                       title: "Love them doggies",
                       rating: 5,
                       content: "some content",
